@@ -1,0 +1,14 @@
+*{
+  text-align: center;
+
+}
+body{
+  background: radial-gradient(circle at center, orange, black)
+}
+header{
+  color: #FFF;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+background-color: #000;
+}

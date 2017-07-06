@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mystery Word</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <header>
+    <h1>Mystery Word</h1>
+    <div class="">
+      <h1>You have {{numGuesses}} guesses left</h1>
+    </div>
+    </header>
+    <div class='message'>
+      <h1>{{message}}</h1>
+    </div>
+
+    <h1>{{letters}}</h1>
+    <!-- <h1>{{letters}}</h1> -->
+    <form class="form-inline" action="/guess" method="post">
+      <div class="form-group">
+      <input class="form-control" type="text" name="guess" maxlength="1" value="" placeholder="Guess one letter">
+      <input class="btn btn-primary" type="submit" name="" value="Guess">
+      <h4>{{alreadyGuessed}}</h4>
+      <div class="guessesMade">
+        <h1>Guesses Made: {{guessed}}</h1>
+      </div>
+    </form>
+    <div class="result">
+      <h1>{{messageResult}}</h1>
+      <h3>{{playAgain}}</h3>
+    </div>
+    <form class="" action="/" method="post">
+      <input class="btn btn-warning" type="submit" name="Restart" value="Restart"
+      </div>
+    </form>
+  </body>
+</html>
