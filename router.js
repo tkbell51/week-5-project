@@ -1,5 +1,5 @@
 const hangmanController = require('./controller/hangmanController');
-const helpers = require('./helpers');
+
 
 module.exports = function(app){
   app.get('/', hangmanController.startGame);

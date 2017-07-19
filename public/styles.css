@@ -1,14 +1,50 @@
 *{
-  text-align: center;
+
 
 }
 body{
-  background: radial-gradient(circle at center, orange, black)
+
+  background: radial-gradient(circle at center, #ff7300, black);
+  font-size: 5em;
+
 }
 header{
   color: #FFF;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
 background-color: #000;
+
+}
+.title{
+  margin-left: 10%;
+}
+.guesses{
+  margin-right: 5%;
+}
+main{
+  text-align: center;
+  padding-top: 5%;
+}
+
+.btn-primary{
+  font-weight: bold;
+color: #FFF;
+background: #000;
+border: #4f4c4c;
+}
+.btn-warning{
+  font-weight: bold;
+  background: #000;
+  color: #ff7300;
+  border: #000;
+}
+.btn-primary:hover{
+  background: #303132;
+
+}
+.btn-warning:hover{
+  background: #ff8608
 }

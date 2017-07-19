@@ -5,8 +5,13 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
 const expressValidator = require('express-validator');
+const fs = require('fs');
 
 const app = express();
+
+
+const words = fs.readFileSync("/usr/share/dict/words", "utf-8").toLowerCase().split("\n");
+let randWord = words[Math.floor(Math.random()*words.length)];
 
 app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');

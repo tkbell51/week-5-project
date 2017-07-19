@@ -1,11 +1,12 @@
 
-const Words = require('../models/words');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const fs = require('fs');
 
-var theAnswer = Words.theAnswer;
-console.log("this is the answer ", theAnswer);
-var letters = Words.letters;
+
+const words = fs.readFileSync("/usr/share/dict/words", "utf-8").toLowerCase().split("\n");
+
+
 var context = {
   letters: ['']
   , theAnswer: ['']
@@ -15,12 +16,20 @@ var context = {
   , messageResult: ''
   , playAgain: ''
   , alreadyGuessed: ''
-  , random : Words.random
+
 };
 
 module.exports = {
   startGame: (req, res, next)=>{
-    req.session.random = context.random;
+    let randWord = words[Math.floor(Math.random()*words.length)];
+    var letters = randWord.split("");
+    var theAnswer = randWord.split("");
+    console.log("this is the answer ", theAnswer);
+    for (var i = 0; i < letters.length; i++) {
+      letters[i] = '__';
+    }
+
+    req.session.random = randWord;
     context.letters = context.letters.concat(letters)
     context.letters.shift();
     context.letters.toString().replace(',',' ')
@@ -79,7 +88,7 @@ module.exports = {
     }
 
     if(context.numGuesses < 1){
-      context.messageResult = "Sorry you Lose. Your word was " + context.random + ".";
+      context.messageResult = "Sorry you Lose. Your word was " + req.session.random + ".";
       context.playAgain = 'Want to play again?'
     }
     res.render('index', context);
@@ -87,13 +96,9 @@ module.exports = {
 
 
   restart: (req, res, next)=>{
+    delete req.session
 
-    delete req.session.guessed
-    delete req.session.letters
-    delete req.session.word
-    delete req.session.theAnswer
-    delete req.session.numGuesses
-    delete req.session.random
+
     context.letters=[''];
     context.theAnswer=[''];
     context.guessed=[];
@@ -102,7 +107,7 @@ module.exports = {
     context.messageResult='';
     context.playAgain='';
     context.alreadyGuessed='';
-    context.random =Words.random;
+    
     res.redirect('/');
   }
 
